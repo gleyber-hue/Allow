@@ -3,9 +3,12 @@ var app = express();
 app.use('/public',express.static('public'));
 var path = __dirname + '/views/index.html';
 
-const mySecret = process.env.MESSAGE_STYLE;
+const mySecret = process.env['MESSAGE_STYLE'];
+console.log(mySecret);
 
-
+app.get('/', function(req, res) {
+  res.sendFile(path)
+});
 
 app.get('/json', function(req, res) {
   
@@ -14,10 +17,10 @@ app.get('/json', function(req, res) {
   } else {
     var response = "Hello json";
   }
-    res.json(response);
-  
-  
+    res.json({"message": response});
+   
 });
+
 
 
 
