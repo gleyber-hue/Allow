@@ -3,17 +3,22 @@ var app = express();
 app.use('/public',express.static('public'));
 var path = __dirname + '/views/index.html';
 
+const mySecret = process.env.MESSAGE_STYLE;
+
+
+
 app.get('/json', function(req, res) {
-  var response = "Hello json".toUpperCase(); // now becomes "HELLO JSON"
-  if (process.env.MESSAGE_STYLE === "uppercase") {
-    response = "Hello json".toUpperCase();
+  
+  if (mySecret === "uppercase") {
+    var response = "Hello json".toUpperCase();
   } else {
-    response = "Hello json";
+    var response = "Hello json";
   }
-  res.json({"message": response});
+    res.json({"message": response});
   
   
 });
+
 
 
 
